@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="navbar-container">
+                <a href="index.html">
+                    <h1>my quiz</h1>
+                </a>
+            </div>
+        </div>
+        <div class="main-container">
+            <div class="image">
+                <img src="image.png">
+            </div>
+            <div class="center-text">
+                <h1>How well do your friends know you?</h1>
+            </div>
+            <div class="instruction">
+                <ul class="instruction-list">
+                    <li class="inst1 inst">
+                        Enter your name
+                    </li>
+                    <li class="inst2 inst">
+                        Select your region
+                    </li>
+                    <li class="inst3 inst">
+                        Answer 10 question about yourself
+                    </li>
+                    <li class="inst4 inst">
+                        Your quiz link will be created
+                    </li>
+                    <li class="inst5 inst">
+                        Share your quiz link with your friends 
+                    </li>
+                    <li class="inst6 inst">
+                        Your friends will try to answer your question
+                    </li>
+                    <li class="inst7 inst">
+                        Check the result at your quiz link!
+                    </li>
+                </ul>
+            </div>
+            <div class="form">
+                <div class="form-wrap">
+                    <form name="myform" method="" id="mysurveyform" onsubmit="return(validate());" action="quiz.html">
+                        <label id="name">enter your name</label>
+                        <input type="text" id="username" placeholder="Example:Jhon" autocomplete="off" name="Name">
+                        <!--<a href="quiz.html">-->
+                            <input type="submit" value="GET STARTED" id="formsubmit" onclick="passvalue()">
+                        <!--</a>-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
