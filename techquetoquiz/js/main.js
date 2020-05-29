@@ -43,7 +43,7 @@ document.getElementById("add-option-button1").addEventListener('click', function
 function removeDiv_1_3(){
     var option1_3 =document.getElementById("option-enclosure-1-3")
     option1_3.style.display ="none"
-    var boxbtn1_3_1= document.getElementById('add-option-button4')
+    var boxbtn1_3_1= document.getElementById('add-option-button1')
     boxbtn1_3_1.innerHTML = 'Add an Option'
     boxbtn1_3_1.style.color = "white"
     boxbtn1_3_1.style.backgroundColor = "#979797"
@@ -777,4 +777,210 @@ document.getElementById('add-option-button10').addEventListener('click', functio
     boxbtn10_2.style.backgroundColor = "red"
 })
 
+/*question function */
+function Optionsave() {
 
+    /*option for question-1*/
+    var q11 = document.getElementById("question-1-option-1").value
+    var q12 = document.getElementById("question-1-option-2").value
+    var q13 = document.getElementById("question-1-option-3").value
+    var q14 = document.getElementById("question-1-option-4").value
+     /*option for question-2*/
+     var q21 = document.getElementById("question-2-option-1").value
+     var q22 = document.getElementById("question-2-option-2").value
+     var q23 = document.getElementById("question-2-option-3").value
+     var q24 = document.getElementById("question-2-option-4").value
+      /*option for question-3*/
+    var q31 = document.getElementById("question-3-option-1").value
+    var q32 = document.getElementById("question-3-option-2").value
+    var q33 = document.getElementById("question-3-option-3").value
+    var q34 = document.getElementById("question-3-option-4").value
+     /*option for question-4*/
+     var q41 = document.getElementById("question-4-option-1").value
+     var q42 = document.getElementById("question-4-option-2").value
+     var q43 = document.getElementById("question-4-option-3").value
+     var q44 = document.getElementById("question-4-option-4").value
+      /*option for question-5*/
+    var q51 = document.getElementById("question-5-option-1").value
+    var q52 = document.getElementById("question-5-option-2").value
+    var q53 = document.getElementById("question-5-option-3").value
+    var q54 = document.getElementById("question-5-option-4").value
+     /*option for question-6*/
+     var q61 = document.getElementById("question-6-option-1").value
+     var q62 = document.getElementById("question-6-option-2").value
+     var q63 = document.getElementById("question-6-option-3").value
+     var q64= document.getElementById("question-6-option-4").value
+      /*option for question-7*/
+    var q71 = document.getElementById("question-7-option-1").value
+    var q72 = document.getElementById("question-7-option-2").value
+    var q73 = document.getElementById("question-7-option-3").value
+    var q74 = document.getElementById("question-7-option-4").value
+     /*option for question-8*/
+     var q81 = document.getElementById("question-8-option-1").value
+     var q82 = document.getElementById("question-8-option-2").value
+     var q83 = document.getElementById("question-8-option-3").value
+     var q84 = document.getElementById("question-8-option-4").value
+      /*option for question-9*/
+    var q91 = document.getElementById("question-9-option-1").value
+    var q92 = document.getElementById("question-9-option-2").value
+    var q93 = document.getElementById("question-9-option-3").value
+    var q94 = document.getElementById("question-9-option-4").value
+     /*option for question-10*/
+    var q101 = document.getElementById("question-10-option-1").value
+    var q102 = document.getElementById("question-10-option-2").value
+    var q103 = document.getElementById("question-10-option-3").value
+    var q104 = document.getElementById("question-10-option-4").value
+    /*answer for question-1*/
+    var a11 = document.getElementById("radio-question-1-option-1").value = q11
+    var a12 = document.getElementById("radio-question-1-option-2").value = q12 
+    var a13 = document.getElementById("radio-question-1-option-3").value = q13
+    var a14 = document.getElementById("radio-question-1-option-4").value = q14
+    var ele1 = document.getElementsByName("answer-1")
+    for(var i=0 ;i <ele1.length;i++)
+    {
+        if(ele1[i].checked){
+            var c1 = ele1[i].value
+        }
+    }
+    /*answer for question-2*/
+    var a21 = document.getElementById("radio-question-2-option-1").value = q21
+    var a22 = document.getElementById("radio-question-2-option-2").value = q22 
+    var a23 = document.getElementById("radio-question-2-option-3").value = q23
+    var a24 = document.getElementById("radio-question-2-option-4").value = q24
+    var ele2 = document.getElementsByName("answer-2")
+    for(var i=0 ;i <ele2.length;i++)
+    {
+        if(ele2[i].checked){
+            var c2 = ele2[i].value
+        }
+    }
+    /*answer for question-3*/
+    var a31 = document.getElementById("radio-question-3-option-1").value = q31
+    var a32 = document.getElementById("radio-question-3-option-2").value = q32 
+    var a33 = document.getElementById("radio-question-3-option-3").value = q33
+    var a34 = document.getElementById("radio-question-3-option-4").value = q34
+    var ele3 = document.getElementsByName("answer-3")
+    for(var i=0 ;i <ele3.length;i++)
+    {
+        if(ele3[i].checked){
+            var c3 = ele3[i].value
+        }
+    }
+    /*answer for question-4*/
+    var a41 = document.getElementById("radio-question-4-option-1").value = q41
+    var a42 = document.getElementById("radio-question-4-option-2").value = q42 
+    var a43 = document.getElementById("radio-question-4-option-3").value = q43
+    var a44 = document.getElementById("radio-question-4-option-4").value = q44
+    var ele4 = document.getElementsByName("answer-4")
+    for(var i=0 ;i <ele4.length;i++)
+    {
+        if(ele4[i].checked){
+            var c4 = ele4[i].value
+        }
+    }
+    /*answer for question-5*/
+    var a51 = document.getElementById("radio-question-5-option-1").value = q51
+    var a52 = document.getElementById("radio-question-5-option-2").value = q52 
+    var a53 = document.getElementById("radio-question-5-option-3").value = q53
+    var a54 = document.getElementById("radio-question-5-option-4").value = q54
+    var ele5 = document.getElementsByName("answer-5")
+    for(var i=0 ;i <ele5.length;i++)
+    {
+        if(ele5[i].checked){
+            var c5 = ele5[i].value
+        }
+    }
+    /*answer for question-6*/
+    var a61 = document.getElementById("radio-question-6-option-1").value = q61
+    var a62 = document.getElementById("radio-question-6-option-2").value = q62 
+    var a63 = document.getElementById("radio-question-6-option-3").value = q63
+    var a64 = document.getElementById("radio-question-6-option-4").value = q64
+    var ele6 = document.getElementsByName("answer-6")
+    for(var i=0 ;i <ele6.length;i++)
+    {
+        if(ele6[i].checked){
+            var c6 = ele6[i].value
+        }
+    }
+    /*answer for question-7*/
+    var a71 = document.getElementById("radio-question-7-option-1").value = q71
+    var a72 = document.getElementById("radio-question-7-option-2").value = q72 
+    var a73 = document.getElementById("radio-question-7-option-3").value = q73
+    var a74 = document.getElementById("radio-question-7-option-4").value = q74
+    var ele7 = document.getElementsByName("answer-7")
+    for(var i=0 ;i <ele7.length;i++)
+    {
+        if(ele7[i].checked){
+            var c7 = ele7[i].value
+        }
+    }
+    /*answer for question-8*/
+    var a81 = document.getElementById("radio-question-8-option-1").value = q81
+    var a82 = document.getElementById("radio-question-8-option-2").value = q82 
+    var a83 = document.getElementById("radio-question-8-option-3").value = q83
+    var a84 = document.getElementById("radio-question-8-option-4").value = q84
+    var ele8 = document.getElementsByName("answer-8")
+    for(var i=0 ;i <ele8.length;i++)
+    {
+        if(ele8[i].checked){
+            var c8 = ele8[i].value
+        }
+    }
+    /*answer for question-9*/
+    var a91 = document.getElementById("radio-question-9-option-1").value = q91
+    var a92 = document.getElementById("radio-question-9-option-2").value = q92 
+    var a93 = document.getElementById("radio-question-9-option-3").value = q93
+    var a94 = document.getElementById("radio-question-9-option-4").value = q94
+    var ele9 = document.getElementsByName("answer-9")
+    for(var i=0 ;i <ele9.length;i++)
+    {
+        if(ele9[i].checked){
+            var c9 = ele9[i].value
+        }
+    }
+    /*answer for question-10*/
+    var a101 = document.getElementById("radio-question-10-option-1").value = q101
+    var a102 = document.getElementById("radio-question-10-option-2").value = q102 
+    var a103 = document.getElementById("radio-question-10-option-3").value = q103
+    var a104 = document.getElementById("radio-question-10-option-4").value = q104
+    var ele10 = document.getElementsByName("answer-10")
+    for(var i=0 ;i <ele10.length;i++)
+    {
+        if(ele10[i].checked){
+            var c10 = ele10[i].value
+        }
+    }
+        var allQuestions = [{
+            options: [q11 , q12 , q13 , q14],
+            answer : c1
+        },{
+            options: [q21 , q22 , q23 , q24],
+            answer: c2
+        } , {
+            options: [q31 , q32 , q33 , q34],
+            answer:c3
+        } , {
+            options : [q41 , q42 , q43 , q44],
+            answer : c4
+        } , {
+            options : [q51 , q52 , q53, q54],
+            answer : c5
+        } , {
+            options : [q61 , q62 , q63 , q64],
+            answer : c6
+        } , {
+            options : [q71 , q72 , q73 , q74] ,
+            answer : c7
+        } , {
+            options : [q81 , q82 , q83 , q84],
+            answer : c8
+        } , {
+            options: [q91 , q92 , q93 , q94] ,
+            answer : c9
+        } , {
+            options : [q101 , q102 , q103 , q104] , 
+            answer : c10
+        }
+        ]
+        console.log(allQuestions)
+}
