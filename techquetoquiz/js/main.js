@@ -4,6 +4,13 @@ function validate() {
         document.myform.Name.focus() ;
         return false ;
     }
+    var category = document.getElementById("cate");
+        if (category.value == "") {
+            //If the "Please Select" option is selected display error.
+            alert("Please select an option!");
+            return false;
+        }
+        return true;
 }
 function removeDiv_1_1(){
     var option1_1 =document.getElementById("option-enclosure-1-1")
