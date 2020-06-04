@@ -30,7 +30,7 @@
                         Select your region
                     </li>
                     <li class="inst3 inst">
-                        Answer 10 question about yourself
+                        Select your category
                     </li>
                     <li class="inst4 inst">
                         Your quiz link will be created
@@ -48,18 +48,20 @@
             </div>
             <div class="form">
                 <div class="form-wrap">
-                    <form name="myform" method="" id="mysurveyform">
+                    <form name="myform" method="" id="mysurveyform" action="create-survey.html">
                         <label id="category">select your category</label>
-                        <select id="cate" name="categories">
-                            <option value="" disabled selected hidden>Choose a category</option>
-                            <option value="category-1">category-1</option>
-                            <option value="category-2">category-2</option>
-                            <option value="category-3">category-3</option>
-                            <option value="category-4">category-4</option>
-                          </select>
+                            <select id="cate" name="categories" style="color: white;" required>
+                                <option value="" disabled selected hidden>Choose a category</option>
+                                <option value="category-1">category-1</option>
+                                <option value="category-2">category-2</option>
+                                <option value="category-3">category-3</option>
+                                <option value="category-4">category-4</option>
+                            </select>
                         <label id="name">enter your name</label>
-                        <input type="text" id="username" placeholder="Example:Jhon" autocomplete="off" name="Name">
-                        <a href="quiz.html">
+                        <input type="text" id="username" placeholder="Example:Jhon" autocomplete="off" name="Name" required>
+                        <label id="noofquestions">number of question</label>
+                        <input type="number" placeholder="Enter Number Of Questions" id="questions" min="1" max="10" name="ques" required>
+                        <a href="create-survey.html">
                             <input type="submit" value="GET STARTED" id="formsubmit" onclick="return validate()">
                         </a>
                     </form>
@@ -67,21 +69,5 @@
             </div>
         </div>
     </div>
-    <script>
-        function validate() {
-            if(document.myform.Name.value == ""){
-            alert("Please provide your name!");
-            document.myform.Name.focus() ;
-            return false ;
-            }
-            var category = document.getElementById("cate");
-            if (category.value == "") {
-            //If the "Please Select" option is selected display error.
-            alert("Please select an option!");
-            return false;
-            }
-            return true;
-        }
-    </script>
 </body>
 </html>

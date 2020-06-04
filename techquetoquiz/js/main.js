@@ -1,17 +1,4 @@
-function validate() {
-    if(document.myform.Name.value == ""){
-        alert("Please provide your name!");
-        document.myform.Name.focus() ;
-        return false ;
-    }
-    var category = document.getElementById("cate");
-        if (category.value == "") {
-            //If the "Please Select" option is selected display error.
-            alert("Please select an option!");
-            return false;
-        }
-        return true;
-}
+
 function removeDiv_1_1(){
     var option1_1 =document.getElementById("option-enclosure-1-1")
     /*option1_1.parentNode.removeChild(option1_1);*/
@@ -991,3 +978,15 @@ function Optionsave() {
         ]
         console.log(allQuestions)
 }
+
+
+
+document.getElementById("done-button").addEventListener("click", function(e) {
+    var page2= document.getElementById("hwg-page-2")
+    var page3 = document.getElementById("page-3")
+    if(page2.style.display == "block")
+    {
+        page2.style.display = "none"
+        page3.style.display = "block"
+    }
+})

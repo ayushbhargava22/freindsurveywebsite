@@ -98,20 +98,23 @@ div{
     position: relative;
 }
 .form-wrap{display: flex;flex-direction: column;}
-.form-wrap #name , .form-wrap #category {
+.form-wrap #name , .form-wrap #category , .form-wrap #noofquestions{
     text-transform: uppercase;
     margin-bottom: 10px;
     color: #333;
     font-size: 16px;
     font-weight: normal;
 }
-.form-wrap #username , .form-wrap #cate{
+.form-wrap #username , .form-wrap #cate , .form #questions{
     height: 35px;
     padding-left: 10;
     color: #333;
     font-weight: 600;
     border-radius: 5px;
     border: 1px solid #ccc;
+}
+.form-wrap #username{
+    margin-bottom: 20px;
 }
 .form-wrap #cate{
     margin-bottom: 20px;
@@ -131,6 +134,16 @@ div{
     font-weight: 600;
     font-size: 14px;
     width: 100%;
+}
+.form-wrap #cate{
+    background-color: #6E2594;
+    color: white;
+    border-radius: 10px;
+    height: 50px;
+    cursor: pointer;
+}
+#cate option{
+    border-bottom: 1px solid white;
 }
 .quiz-center-text{
     display: flex;
@@ -259,7 +272,7 @@ textarea{overflow: auto;}
 }
 .fullwidthbutton{
     display: block;
-    width: 100%;
+    width: 60%;
     border: none;
     background-color: #7B389D;
     color: #f7fcfc;
@@ -305,4 +318,183 @@ button.close{
     cursor: pointer;
     text-align: center;
     border-radius: 8px;
+}
+.link-container{
+    max-width: 800px;
+    margin: 0 auto;
+    display: block;
+}
+#result-heading{
+    font-weight: bold;
+    color: #6E2594;
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+#link-box{
+    background: #9932cc38;
+    border-radius: 8px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px dashed black;
+}
+hr{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+#link-details p {
+    font-weight: normal;
+    margin: 0 0 10px;
+}
+#results-instruction{
+    font-size: 15px;
+    line-height: 1.2rem;
+}  
+.highlighted_text {
+    background-color: #9932cc38;
+    font-size: 14px;
+    line-height: 32px;
+    font-weight: normal;
+    padding: 8px;
+    border-radius: 4px;
+    min-width: 297px;
+}
+.button_2 {
+    margin-top: 10px;
+    border-radius: 8px;
+}
+.fullWidthButton {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #7B389D;
+    color: #f7fcfc;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 30px;
+    /* border-radius: 25px; */
+}
+#scoreboard-title{
+    font-size: 20px;
+    color: #FF5151;
+    font-weight: bold;
+}
+table , th ,td{
+    border: 1px solid black;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+}
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.fullwidthbutton{
+    width: 50%;
+}
+@media screen and (max-width:450px)
+{
+    .quiz-center-text p {
+        text-align: center;
+    }
+    #results-instruction{
+        text-align: center;
+        padding: 0 10;
+    }
+    #quiz-link-title{
+        padding: 0 10 ;
+        text-align: center;
+    }
+    #pollLinkField{
+        margin: 0 30px;
+    }
+    #copyButton{
+        width: 100%;
+    }
+}
+@media screen and (max-width:800px)
+{
+    .quiz-center-text p {
+        text-align: center;
+    }
+    #results-instruction{
+        text-align: center;
+        padding: 0 10;
+    }
+    #quiz-link-title{
+        padding: 0 10 ;
+        text-align: center;
+    }
+    #linkinput{
+        display: flex;
+        justify-content: center;       
+    }
+    #copyButton{
+        width: 100%;
+    }
+}
+.col-lg-12{
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+}
+.share-btn-div{
+    cursor: pointer;
+    margin: 0px;
+    padding: 3px;
+
+}
+.whatsapp-btn{
+    background-color: #20c47a;
+    max-height: 47px;
+}
+.share-button{
+    border-width: 0px;
+    margin: 0px;
+    border-radius: 0px;
+}
+.btn-block{
+    display: block;
+    width: 100%;
+}
+.facebook, .messenger{
+    width: 50%;
+    cursor: pointer;
+}
+.small-btn{
+    display: flex;
+    flex-direction: row;
+}
+.btn-lg{
+    display: flex;
+    justify-content: center;
+    padding: 10px 16px;
+    font-size: 18px;
+    color: white;
+    font-weight: 600;
+    line-height: 1.3333333;
+}
+.share-text{
+    padding-left: 10px;
+}
+.facebook-btn{
+    background-color: #3B5998;    
+}
+.messenger-btn{
+    background-color:#0084ff;
+}
+.page-que-share{
+    padding-left: 10px;
+    padding-top: 3px;
+}
+.row{
+    margin-bottom: 20px;
 }
