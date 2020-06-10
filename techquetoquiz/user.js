@@ -1,139 +1,117 @@
-document.querySelectorAll('#option-2').forEach(item => {
-    item.addEventListener('click', event => {
-        var box1_1 = document.getElementById("question-block-id2")
-        var box1_2 = document.getElementById("question-block-id3")
-        if(box1_1.style.display=="none" && box1_2.style.display == "none")
-        {
-            box1_1.style.display = "block";
-            box1_2.style.display = "block";
+$(document).ready(function () {
+    localStorage.clear();
+    getQuizid();
+    getQuestions();
+    getUserList();
+});
+
+
+let questionNumber = 0;
+let questionLength = 0;
+let questionData = '';
+let userScroce = 0;
+
+function getQuizid() {
+    let params = new URLSearchParams(window.location.search);
+    let quiz_id = params.get('quiz_id')
+    localStorage.setItem('quiz_id', quiz_id);
+}
+
+function getQuestions() {
+    let quiz_id = localStorage.getItem('quiz_id');
+    const data = {
+        "userId": quiz_id
+    };
+    postApi('http://api.techqueto.in/api/get-question', data).then(x => {
+        questionData = x.data;
+        questionLength = x.data.length;
+        createQuestion();
+    });
+}
+
+function createQuestion() {
+    document.getElementById('question-section').innerHTML = '';
+    document.getElementById('option-section').innerHTML = '';
+    let questionhtml = '';
+    let optionhtml = '';
+    let optionList = JSON.parse(questionData[questionNumber]['options']);
+    questionhtml = `<div class="question-bg" id="question-${(questionNumber+1)}">${questionData[questionNumber]['question']}</div>`;
+    optionList.map((i, x) => {
+        optionhtml += `  <div class="progress option-bg option-1-bg" id="${i['id']}" onclick="nextQuestion('${i['id']}')">
+                        <span class="option-text option1_1" id="option-${(x+1)}">${i['optionValue']}</span>
+                        </div> `;
+    });
+    document.getElementById('question-section').innerHTML = questionhtml;
+    document.getElementById('option-section').innerHTML = optionhtml;
+}
+
+function showquestion() {
+    document.getElementById('survey-user-section').style = "display:none";
+    document.getElementById('survey-question-section').style = "disply:block";
+}
+
+
+function nextQuestion(optionId) {
+  
+    let anwserData = JSON.parse(questionData[questionNumber]['answer']);
+    if (questionNumber != (questionLength-1)) {
+        if (anwserData['id'] === optionId) {
+            document.getElementById(optionId).className += " green";
+            userScroce += 10;
+            questionNumber += 1;
+        } else {
+            document.getElementById(optionId).className += " red";
+            document.getElementById(anwserData['id']).className += " green";
+            questionNumber += 1;
         }
-        else{
-            box1_1.style.display = "none"
-            box1_2.style.display = "block"
+      setTimeout(createQuestion,1000);
+    }else{
+        if (anwserData['id'] === optionId) {
+            document.getElementById(optionId).className += " green";
+            userScroce += 10;
+        } else {
+            document.getElementById(optionId).className += " red";
+            document.getElementById(anwserData['id']).className += " green";    
+           
         }
+        addUserData();
+      
         
-    })
-  })
-document.querySelectorAll('#option-1').forEach(item => {
-    item.addEventListener('click', event => {
-        var box1_1 = document.getElementById("question-block-id")
-        var box1_2 = document.getElementById("question-block-id2")
-        if(box1_1.style.display=="none" && box1_2.style.display == "none")
-        {
-            box1_1.style.display = "block";
-            box1_2.style.display = "block";
+    }
+}
+
+function addUserData(){
+    let surveyUserName = document.getElementById('username').value;
+    const data = {
+        "user_id": localStorage.getItem('quiz_id'),
+        "survey_user_name":surveyUserName,
+        "survey_user_score":userScroce
+    };
+    postApi('http://api.techqueto.in/api/create-survey-user', data).then(x => {
+        if(x.status){
+            location.reload();
         }
-        else{
-            box1_1.style.display = "none"
-            box1_2.style.display = "block"
-        }
-    })
-})
-document.querySelectorAll('#option-3').forEach(item => {
-    item.addEventListener('click', event => {
-        var box1_1 = document.getElementById("question-block-id3")
-        var box1_2 = document.getElementById("question-block-id4")
-        if(box1_1.style.display=="none" && box1_2.style.display == "none")
-        {
-            box1_1.style.display = "block";
-            box1_2.style.display = "block";
-        }
-        else{
-            box1_1.style.display = "none"
-            box1_2.style.display = "block"
-        }
-    })
-})
-document.querySelectorAll('#option-4').forEach(item => {
-    item.addEventListener('click', event => {
-        var box1_1 = document.getElementById("question-block-id4")
-        var box1_2 = document.getElementById("question-block-id5")
-        if(box1_1.style.display=="none" && box1_2.style.display == "none")
-        {
-            box1_1.style.display = "block";
-            box1_2.style.display = "block";
-        }
-        else{
-            box1_1.style.display = "none"
-            box1_2.style.display = "block"
-        }
-    })
-})
-document.querySelectorAll('#option-5').forEach(item => {
-    item.addEventListener('click', event => {
-        var box1_1 = document.getElementById("question-block-id5")
-        var box1_2 = document.getElementById("question-block-id6")
-        if(box1_1.style.display=="none" && box1_2.style.display == "none")
-        {
-            box1_1.style.display = "block";
-            box1_2.style.display = "block";
-        }
-        else{
-            box1_1.style.display = "none"
-            box1_2.style.display = "block"
-        }
-    })
-})
-document.querySelectorAll('#option-6').forEach(item => {
-    item.addEventListener('click', event => {
-        var box1_1 = document.getElementById("question-block-id6")
-        var box1_2 = document.getElementById("question-block-id7")
-        if(box1_1.style.display=="none" && box1_2.style.display == "none")
-        {
-            box1_1.style.display = "block";
-            box1_2.style.display = "block";
-        }
-        else{
-            box1_1.style.display = "none"
-            box1_2.style.display = "block"
-        }
-    })
-})
-document.querySelectorAll('#option-7').forEach(item => {
-    item.addEventListener('click', event => {
-        var box1_1 = document.getElementById("question-block-id7")
-        var box1_2 = document.getElementById("question-block-id8")
-        if(box1_1.style.display=="none" && box1_2.style.display == "none")
-        {
-            box1_1.style.display = "block";
-            box1_2.style.display = "block";
-        }
-        else{
-            box1_1.style.display = "none"
-            box1_2.style.display = "block"
-        }
-    })
-})
-document.querySelectorAll('#option-8').forEach(item => {
-    item.addEventListener('click', event => {
-        var box1_1 = document.getElementById("question-block-id8")
-        var box1_2 = document.getElementById("question-block-id9")
-        if(box1_1.style.display=="none" && box1_2.style.display == "none")
-        {
-            box1_1.style.display = "block";
-            box1_2.style.display = "block";
-        }
-        else{
-            box1_1.style.display = "none"
-            box1_2.style.display = "block"
-        }
-    })
-})
-document.querySelectorAll('#option-9').forEach(item => {
-    item.addEventListener('click', event => {
-        var box1_1 = document.getElementById("question-block-id9")
-        var box1_2 = document.getElementById("question-block-id10")
-        if(box1_1.style.display=="none" && box1_2.style.display == "none")
-        {
-            box1_1.style.display = "block";
-            box1_2.style.display = "block";
-        }
-        else{
-            box1_1.style.display = "none"
-            box1_2.style.display = "block"
-        }
-    })
-})
+    });
+}
 
 
-
+function getUserList(){
+    let html = `<tr>
+                    <th>Name</th>
+                    <th style="width: 30%;">Score</th>
+                </tr>`;
+    const data = {
+        "user_id" :localStorage.getItem('quiz_id'),
+    };
+    postApi('http://api.techqueto.in/api/get-survey-user', data).then(x => {
+       if(x.status){
+           x.data.map(value=>{
+            html += `<tr>
+                      <td>${value['survey_user_name']}</td>
+                      <td style="width: 30%;">${value['survey_user_score']}</td>
+                    </tr>`;
+           });
+           document.getElementById('userList').innerHTML= html;
+       }
+    });
+}

@@ -243,6 +243,13 @@ table{
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+.red{
+background-color: #FF5151;
+}
+.green{
+    background-color: green; 
+}
 @media screen and (max-width:450px)
 {
     .image{
@@ -250,5 +257,12 @@ table{
     }
     .center-text h1{
         text-align: center;
+    }
+}
+
+@media screen and (max-width:450px)
+{
+    .main-container .image{
+        height: 20%;
     }
 }

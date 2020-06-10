@@ -5,69 +5,8 @@
     <title>QUIZ</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <div class="container">
-        <div class="navbar">
-            <div class="navbar-container">
-                <a href="index.html">
-                    <h1>my quiz</h1>
-                </a>
-            </div>
-        </div>
-        <div class="main-container">
-            <div class="image">
-                <img src="image.png">
-            </div>
-            <div class="center-text">
-                <h1>How well do your friends know you?</h1>
-            </div>
-            <div class="instruction">
-                <ul class="instruction-list">
-                    <li class="inst1 inst">
-                        Enter your name
-                    </li>
-                    <li class="inst2 inst">
-                        Select your region
-                    </li>
-                    <li class="inst3 inst">
-                        Select your category
-                    </li>
-                    <li class="inst4 inst">
-                        Your quiz link will be created
-                    </li>
-                    <li class="inst5 inst">
-                        Share your quiz link with your friends 
-                    </li>
-                    <li class="inst6 inst">
-                        Your friends will try to answer your question
-                    </li>
-                    <li class="inst7 inst">
-                        Check the result at your quiz link!
-                    </li>
-                </ul>
-            </div>
-            <div class="form">
-                <div class="form-wrap">
-                    <form name="myform" method="" id="mysurveyform" action="create-survey.html">
-                        <label id="category">select your category</label>
-                            <select id="cate" name="categories" style="color: white;" required>
-                                <option value="" disabled selected hidden>Choose a category</option>
-                                <option value="category-1">category-1</option>
-                                <option value="category-2">category-2</option>
-                                <option value="category-3">category-3</option>
-                                <option value="category-4">category-4</option>
-                            </select>
-                        <label id="name">enter your name</label>
-                        <input type="text" id="username" placeholder="Example:Jhon" autocomplete="off" name="Name" required>
-                        <label id="noofquestions">number of question</label>
-                        <input type="number" placeholder="Enter Number Of Questions" id="questions" min="1" max="10" name="ques" required>
-                        <a href="create-survey.html">
-                            <input type="submit" value="GET STARTED" id="formsubmit" onclick="return validate()">
-                        </a>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+<script>
+    window.history.pushState("", "", '/survey-ui/create-survey.html');
+    location.reload();
+</script>
 </html>

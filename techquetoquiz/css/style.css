@@ -105,26 +105,33 @@ div{
     font-size: 16px;
     font-weight: normal;
 }
-.form-wrap #username , .form-wrap #cate , .form #questions{
+.form-wrap #username , .form-wrap #categories , .form #questioncount{
     height: 35px;
     padding-left: 10;
     color: #333;
     font-weight: 600;
-    border-radius: 5px;
+    border-radius: 6px;
     border: 1px solid #ccc;
 }
 .form-wrap #username{
     margin-bottom: 20px;
 }
-.form-wrap #cate{
+.form-wrap #categories{
     margin-bottom: 20px;
     text-transform: uppercase;
+    border: 5px solid #6E2594;
 }
 .form-wrap #mysurveyform{
     display: flex;
     flex-direction: column;
 }
-.form-wrap #formsubmit{
+
+.option-remove-icon{
+    cursor: pointer;
+}
+
+
+.form-wrap a{
     margin-top: 10px;
     height: 50px;
     border-radius: 10px;
@@ -134,11 +141,15 @@ div{
     font-weight: 600;
     font-size: 14px;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
-.form-wrap #cate{
+.form-wrap #categories{
     background-color: #6E2594;
     color: white;
-    border-radius: 10px;
+    border-radius: 6px;
     height: 50px;
     cursor: pointer;
 }
@@ -398,7 +409,11 @@ table{
     border-spacing: 0;
 }
 .fullwidthbutton{
+    margin: 10px auto;
     width: 50%;
+}
+.button_2{
+    width: 100%;
 }
 @media screen and (max-width:450px)
 {
@@ -438,6 +453,12 @@ table{
         justify-content: center;       
     }
     #copyButton{
+        width: 100%;
+    }
+    #result-heading{
+        text-align: center;
+    }
+    .highlighted_text{
         width: 100%;
     }
 }
@@ -497,4 +518,115 @@ table{
 }
 .row{
     margin-bottom: 20px;
+}
+@media screen and (max-width:550px)
+{
+    .center-text h1{
+        text-align: center;
+    }
+    .container{
+        padding: 0 5px;
+    }
+}
+@media screen and (max-width:800px)
+{
+    .quiz-center-text p {
+        text-align: center;
+    }
+    #results-instruction{
+        text-align: center;
+        padding: 0 10;
+    }
+    #quiz-link-title{
+        padding: 0 10 ;
+        text-align: center;
+    }
+    #linkinput{
+        display: flex;
+        justify-content: center;       
+    }
+    #copyButton{
+        width: 100%;
+    }
+}
+@media screen and (max-width:450px)
+{
+    .quiz-center-text p {
+        text-align: center;
+    }
+    #results-instruction{
+        text-align: center;
+        padding: 0 10;
+    }
+    #quiz-link-title{
+        padding: 0 10 ;
+        text-align: center;
+    }
+    #pollLinkField{
+        margin: 0 30px;
+    }
+    #copyButton{
+        width: 100%;
+    }
+    .main-container .image {
+        height: 20%;
+    }
+    .center-text h1{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+    .instruction-list{
+        padding-left: 10px;
+    }
+    .instruction-list .inst{
+        letter-spacing: 1px;
+    }
+    .form{
+        margin-top: 40px;
+    }
+    .row{
+        padding: 0 5px;
+    }
+    .col-lg-12{
+        padding: 0;
+    }
+}
+@media screen and (max-width:580px)
+{
+    .main-container .image img {
+    width: 120%;
+    }
+}
+@media screen and (max-width:480px)
+{
+    .main-container .image img {
+    width: 120%;
+    }
+}
+
+@media screen and  (max-device-width: 850px) and (orientation : landscape){
+    .main-container .image img {
+        width: 100%;
+    }
+}
+@media screen and  (max-device-width: 450px) and (orientation : landscape){
+    .main-container .image img {
+        width: 125%;
+    }
+}
+@media screen and  (max-device-width: 450px) and (orientation : landscape){
+    .main-container .image {
+        height: 50%;
+    }
+}
+@media screen and  (max-device-width: 800px) and (orientation : landscape){
+    .main-container .image {
+        height: 52%;
+    }
+}
+@media screen and  (max-device-width: 1000px) and (orientation : landscape){
+    .main-container .image {
+        height: 36%;
+    }
 }
