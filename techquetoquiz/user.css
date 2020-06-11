@@ -59,7 +59,7 @@ div{
 .main-container .image{
     display: flex;
     justify-content: center;
-    height: 30%;
+    height: 35%;
     margin-top: 20px;
 }
 .main-container .image img{
@@ -250,6 +250,66 @@ background-color: #FF5151;
 .green{
     background-color: green; 
 }
+.number-table{
+    padding-bottom: 20px;
+}
+.info h1{
+    font-size: 13px;
+}
+@media screen and  (max-device-width: 1000px) {
+    .main-container .image {
+        height: 33%;
+    }
+}
+@media screen and  (max-device-width: 850px) and (orientation : landscape){
+    .main-container .image  {
+        height: 52%;
+    }
+    .main-container .image img {
+        width: 100%;
+    }
+}
+@media screen and (max-width : 850px)
+{
+    .main-container .image{
+        height: 42%;
+    }
+}
+@media screen and  (max-device-width: 800px) and (orientation : landscape){
+    .main-container .image {
+        height: 34%;
+    }
+}
+@media screen and (max-width: 760px){
+    .main-container .image{
+        height: 36%;
+    }
+}
+@media screen and  (max-device-width: 750px) and (orientation : landscape){
+    .main-container .image  {
+        height: 41%;
+        width: 97%;
+    }
+}
+@media screen and  (max-device-width: 650px) and (orientation : landscape){
+    .main-container .image  {
+       height:51%;
+    }
+}
+@media screen and (max-width:580px)
+{
+    .main-container .image img {
+    width: 100%;
+    }
+}
+@media screen and (max-width:480px)
+{
+    .main-container .image  {
+    width: 97%;
+    height: 25%;
+    }
+}
+
 @media screen and (max-width:450px)
 {
     .image{
@@ -262,7 +322,24 @@ background-color: #FF5151;
 
 @media screen and (max-width:450px)
 {
-    .main-container .image{
+    .main-container .image {
         height: 20%;
+    }
+}
+@media screen and  (max-device-width: 450px) and (orientation : landscape){
+    .main-container .image img {
+        width: 125%;
+    }
+}
+@media screen and  (max-device-width: 450px) and (orientation : landscape){
+    .main-container .image {
+        height: 50%;
+    }
+}
+@media screen and (max-width:290px)
+{
+    .main-container .image{
+        width: 96%;
+        height: 19%;
     }
 }

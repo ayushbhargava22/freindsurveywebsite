@@ -183,3 +183,13 @@ function submitValue(correctAnswer){
     document.getElementById("second-section").style = "display:none";
     document.getElementById("third-section").style = "display:block";
 }
+
+
+function copyLink() {
+    var copytext = document.getElementById('link-path')
+    copytext.select();
+    copytext.setSelectionRange(0, 99999); /*for mobile device*/
+
+    document.execCommand("copy");
+    alert("Copied the text: " + copytext.value);
+}
