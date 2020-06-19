@@ -26,30 +26,44 @@ function getCategory() {
 
 
 function createUser() {
+
     let username = document.getElementById("username").value;
     let userQuestionCount = document.getElementById("questionCount").value;
+    if (username && userQuestionCount) {
+        if (username.match(/^[a-zA-Z]+$/)) {
+            if (userQuestionCount < 11 && userQuestionCount > 1) {
+                document.getElementById('loader').style = "display:flex";
+                const data = {
+                    "name": username
+                };
+                localStorage.setItem('userQuestionCount', userQuestionCount);
+                postApi('http://api.techqueto.in/api/create-user', data).then(x => {
+                    let user_id = localStorage.getItem('user_id');
+                    document.getElementById("questionCount").value = '';
+                    document.getElementById('loader').style = "display:none";
+                    if (user_id) {
+                        localStorage.setItem('user_id', x['user_id']);
+                        document.getElementById("first-section").style = "display:none";
+                        document.getElementById("second-section").style = "display:block";
 
+                    } else {
+                        localStorage.removeItem('user_id');
+                        localStorage.setItem('user_id', x['user_id']);
+                        document.getElementById("first-section").style = "display:none";
+                        document.getElementById("second-section").style = "display:block";
+                    }
 
-    const data = {
-        "name": username
-    };
-    localStorage.setItem('userQuestionCount', userQuestionCount);
-    postApi('http://api.techqueto.in/api/create-user', data).then(x => {
-        let user_id = localStorage.getItem('user_id');
-        document.getElementById("questionCount").value = '';
-        if (user_id) {
-            localStorage.setItem('user_id', x['user_id']);
-            document.getElementById("first-section").style = "display:none";
-            document.getElementById("second-section").style = "display:block";
-
-        } else {
-            localStorage.removeItem('user_id');
-            localStorage.setItem('user_id', x['user_id']);
-            document.getElementById("first-section").style = "display:none";
-            document.getElementById("second-section").style = "display:block";
+                });
+            } else {
+                alert("min 2 and max 10");
+            }
+        }else {
+            alert("Letter only");
         }
+    } else {
+        alert("Value is missing");
+    }
 
-    });
 }
 
 
@@ -67,6 +81,7 @@ function createOption(questionNumber, optionNumber) {
 }
 
 function createQuestion() {
+
     document.getElementById('question-section').innerHTML = '';
     let html = '';
     html += ` <textarea maxlength="100" spellcheck="false" id="question-${questionCount}" type="text" class="form-control text-option-shadow" rows="3" name="question" placeholder="Enter your Question">If he meets with a genie, what would be his/her wish?</textarea>`;
@@ -81,7 +96,7 @@ function addOption() {
     if (optionCount < 6) {
         optionCount += 1;
         createOption(questionCount, optionCount);
-        
+
     } else {
         alert("you can only add 6 option");
     }
@@ -99,86 +114,103 @@ function nextQuestion() {
 
 }
 
-function questionValidation(){
-    let userAnswerValue,userAnswer,correctAnswer,userQuestionCountValue,userAnswerId;
+function questionValidation() {
+    let userAnswerValue, userAnswer, correctAnswer, userQuestionCountValue, userAnswerId;
+    let optionstatus = true;
     userQuestionCountValue = parseInt(localStorage.getItem('userQuestionCount'));
     userAnswer = document.getElementsByName('answer-1');
-    for(var i = 0; i < userAnswer.length; i++){
-        if(userAnswer[i].checked){
+    for (var i = 0; i < userAnswer.length; i++) {
+        if (userAnswer[i].checked) {
             userAnswerValue = userAnswer[i].value;
             userAnswerId = userAnswer[i].id;
         }
     }
 
-   
-    
-    if(userAnswerValue){
-        correctText = document.getElementById(`${userAnswerValue}`).value;
-        correctAnswer = {
-                "text":correctText,
-                "id":userAnswerId
-        };
-        if(userQuestionCountValue === questionCount){
-            submitValue(correctAnswer);
-        }else{
-            addUserQuestion(correctAnswer)
+    for (i = 1; i <= optionCount; i++) {
+        optionValue = document.getElementById(`question-${questionCount}-option-${i}`).value;
+        if (optionValue) {} else {
+            optionstatus = false;
         }
-    }else{
-        alert("Please select one answer");
+    }
+
+    if (optionstatus) {
+        if (userAnswerValue) {
+            correctText = document.getElementById(`${userAnswerValue}`).value;
+            correctAnswer = {
+                "text": correctText,
+                "id": userAnswerId
+            };
+            if (userQuestionCountValue === questionCount) {
+                submitValue(correctAnswer);
+            } else {
+                addUserQuestion(correctAnswer)
+            }
+        } else {
+            alert("Please select one answer");
+        }
+    } else {
+        alert("option value missing");
     }
 }
 
-function submitQuestion(correctAnswer){
-    let questionValue,userId;
+function submitQuestion(correctAnswer) {
+    let questionValue, userId;
     userId = localStorage.getItem('user_id');
-    questionValue =   document.getElementById(`question-${questionCount}`).value;
+    questionValue = document.getElementById(`question-${questionCount}`).value;
     let optionList = [];
     let optionValue = '';
     for (i = 1; i <= optionCount; i++) {
         optionValue = document.getElementById(`question-${questionCount}-option-${i}`).value;
-        if(optionValue){
-            optionList.push({"optionValue":optionValue,"id":`radio-question-${questionCount}-option-${i}`});
-        }else{
+        if (optionValue == "") {
+            alert("option value missing");
+            return null;
+        }
+        if (optionValue) {
+            optionList.push({
+                "optionValue": optionValue,
+                "id": `radio-question-${questionCount}-option-${i}`
+            });
+        } else {
             alert("value missing..");
             optionList = [];
-        }      
+        }
     }
-  
-    let data = {
-        "userId":userId,
-        "question":questionValue,
-        "optionData":JSON.stringify(optionList),
-        "answer":JSON.stringify(correctAnswer)
-    };
-    postApi('http://api.techqueto.in/api/add-user-question', data).then(x => {
-        console.log(x);
-    });
+
+    if (optionList) {
+        let data = {
+            "userId": userId,
+            "question": questionValue,
+            "optionData": JSON.stringify(optionList),
+            "answer": JSON.stringify(correctAnswer)
+        };
+        postApi('http://api.techqueto.in/api/add-user-question', data).then(x => {
+            return true
+        });
+    }
 
 }
 
 
 function addUserQuestion(correctAnswer) {
     let userQuestionCountValue = parseInt(localStorage.getItem('userQuestionCount'));
-    if(userQuestionCountValue > questionCount){
+    if (userQuestionCountValue > questionCount) {
         submitQuestion(correctAnswer);
         questionCount += 1;
         optionCount = 3;
         document.getElementById('options-div').innerHTML = '';
         createQuestion(questionCount);
-    if(userQuestionCountValue === questionCount){
+        if (userQuestionCountValue === questionCount) {
             document.getElementById('nextbutton').style = "display:none";
             document.getElementById('donebutton').style = "display:block";
         }
-    } else{
-       
     }
 }
 
-function submitValue(correctAnswer){
+function submitValue(correctAnswer) {
     submitQuestion(correctAnswer);
     let userId = localStorage.getItem('user_id');
     let url = window.location.hostname;
-    let path = url+'/survey-ui/quiz.html?quiz_id='+userId;
+    let path = url + '/survey-ui/quiz.html?quiz_id=' + userId;
     document.getElementById('link-path').value = path;
     document.getElementById("second-section").style = "display:none";
     document.getElementById("third-section").style = "display:block";
@@ -189,7 +221,55 @@ function copyLink() {
     var copytext = document.getElementById('link-path')
     copytext.select();
     copytext.setSelectionRange(0, 99999); /*for mobile device*/
-
     document.execCommand("copy");
     alert("Copied the text: " + copytext.value);
+}
+
+function decorateWhatsAppLink() {
+    let userId = localStorage.getItem('user_id');
+    let url = window.location.hostname;
+    let path = url + '/survey-ui/quiz.html?quiz_id=' + userId;
+    var urll = 'whatsapp://send?text=';
+    var text = path;
+    var encodedText = encodeURIComponent(text);
+
+    var $whatsApp = $('.share-btn-div a');
+
+    $whatsApp.attr('href', urll + encodedText);
+}
+
+function decoratetwitterLink() {
+    let userId = localStorage.getItem('user_id');
+    let url = window.location.hostname;
+    let path = url + '/survey-ui/quiz.html?quiz_id=' + userId;
+    var twitterShare = document.getElementById('twitter-btnn')
+
+
+    twitterShare.onclick = function (e) {
+        e.preventDefault();
+        var twitterWindow = window.open('https://twitter.com/share?url=' + path, 'twitter-popup', 'height=350,width=600');
+        if (twitterWindow.focus) {
+            twitterWindow.focus();
+        }
+        return false;
+    }
+
+}
+
+
+function decoratefacebookLink() {
+    let userId = localStorage.getItem('user_id');
+    let url = window.location.hostname;
+    let path = url + '/survey-ui/quiz.html?quiz_id=' + userId;
+    var facebookShare = document.getElementById('facebook-btnn');
+
+
+    facebookShare.onclick = function (e) {
+        e.preventDefault();
+        var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + path, 'facebook-popup', 'height=350,width=600');
+        if (facebookWindow.focus) {
+            facebookWindow.focus();
+        }
+        return false;
+    }
 }
