@@ -112,6 +112,8 @@ div{
     text-align: center;
     margin-top: 10px;
     font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 .footer{
     width: 60%;
@@ -125,6 +127,10 @@ div{
     width: 100%;
     padding: 0% 2%;
     text-align: center;
+}
+.btn:hover{
+    background-color: black;
+    color: white;
 }
 /*media querie*/
 @media screen and (max-width:920px)

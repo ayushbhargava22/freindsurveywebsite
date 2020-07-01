@@ -428,3 +428,92 @@ background-color: #FF5151;
         height: 13%;
     }
 }
+
+
+
+.link-container{
+    max-width: 800px;
+    margin: 0 auto;
+    display: block;
+}
+.col-lg-12{
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+}
+.share-btn-div{
+    cursor: pointer;
+    margin: 0px;
+    padding: 3px;
+
+}
+.whatsapp-btn{
+    background-color: #20c47a;
+    max-height: 47px;
+}
+.share-button{
+    border-width: 0px;
+    margin: 0px;
+    border-radius: 0px;
+}
+.btn-block{
+    display: block;
+    width: 100%;
+}
+.facebook, .messenger{
+    width: 50%;
+    cursor: pointer;
+}
+.small-btn{
+    display: flex;
+    flex-direction: row;
+}
+.btn-lg{
+    display: flex;
+    justify-content: center;
+    padding: 10px 16px;
+    font-size: 18px;
+    color: white;
+    font-weight: 600;
+    line-height: 1.3333333;
+}
+.share-text{
+    padding-left: 10px;
+}
+.facebook-btn{
+    background-color: #3B5998;    
+}
+.twitter-btn{
+    background-color:#55ACEE;
+}
+.page-que-share{
+    padding-left: 10px;
+    padding-top: 3px;
+}
+#scoreboard-table{
+    font-weight: bold;
+    color: #ff515f;
+    font-size: 20px;
+
+}
+.scoreboard{
+    max-width: 600px;
+    min-width: 250px;
+    border: 1px solid black;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+    background-color: transparent;    
+}
+.scoreboard th{
+    border: 1px solid black;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+}
