@@ -398,3 +398,20 @@ function decoratefacebookLink() {
         return false;
     }
 }
+document.getElementById('button-menu-mobile').addEventListener('click', function() {
+    var box1 = document.getElementById('mobile-menu')
+    if(box1.style.display == 'none')
+    {
+        box1.style.display = 'block'
+    }
+    else{
+        box1.style.display = 'none'
+    }
+})
+document.getElementById('mobile-menu-close').addEventListener('click', function() {
+    var box2= document.getElementById('mobile-menu')
+    if(box2.style.display == 'block')
+    {
+        box2.style.display = 'none'
+    }
+})

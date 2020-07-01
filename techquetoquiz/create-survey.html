@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QUIZ</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body>
     <div class="flexbox" id="loader" style="display: none;">
@@ -46,7 +47,14 @@
                 <div class="main-nav">
                     <div class="site-conatiner">
                         <div class="site__row">
-                            <div class="site__col">
+                            <div class="site__col desktop">
+                               <div class="site_col">
+                                    <div class="nav-logo">
+                                        <a href="#">
+                                            <img src="badiyaa.png">
+                                        </a>
+                                    </div>
+                               </div>
                                 <ul>
                                     <li>
                                         <a href="#">
@@ -73,6 +81,15 @@
                                     </li>
                                 </ul>
                             </div>
+                            <div class="site__col nav-mobile">
+                                <div class="button-wrap">
+                                    <div class="button-menu-mobile" id="button-menu-mobile">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>    
                         </div>
                     </div>
                 </div>
@@ -132,25 +149,101 @@
                 </div>
             </div>
         </div>
+        <div class="footer-copyright">
+            <div class="site__container">
+                <div class="site__row">
+                    <ul class="social">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <h3 class="post-title" style="text-align: center;">
+                        Copyright © 2018. Created by Techqueto
+                         |
+                         <a href="#">Privacy Policy</a> 
+                         |
+                         <a href="#">T&C</a>
+                         |
+                         <a href="#">Cookie Policy</a>
+                    </h3>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="footer-copyright">
-        <div class="site__container">
-            <div class="site__row">
-                <ul class="social">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-body">
+            <div class="mobile-menu-close" id="mobile-menu-close" >
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="mobile-menu-social">
+                <ul class="social-block">
+                    <li class="facebook-link">
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="twitter-link">
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="youtube-link">
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fa fa-youtube" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="insta-link">
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="login-link">
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
                 </ul>
-                <h3 class="post-title" style="text-align: center;">
-                    Copyright © 2018. Created by Techqueto
-                     |
-                     <a href="#">Privacy Policy</a> 
-                     |
-                     <a href="#">T&C</a>
-                     |
-                     <a href="#">Cookie Policy</a>
-                </h3>
+            </div>
+            <div class="mobile-menu-items">
+                <ul>
+                    <li class="menu-item-home">
+                        <a href="#">Home</a>
+                    </li>
+                    <li class="menu-item-home">
+                        <a href="#">Trending News</a>
+                    </li>
+                    <li class="menu-item-home">
+                        <a href="#">Entertainment</a>
+                    </li>
+                    <li class="menu-item-home">
+                        <a href="#">Gift & Memes</a>
+                    </li>
+                    <li class="menu-item-home">
+                        <a href="#">Search Jobs</a>
+                    </li>
+                    <li class="menu-item-home">
+                        <a href="#">Photos</a>
+                    </li>
+                    <li class="menu-item-home">
+                        <a href="#">Write For Us</a>
+                    </li>
+                </ul>
+                <ul class="menu-mobile-end"></ul>
             </div>
         </div>
     </div>
