@@ -22,25 +22,7 @@ div{
     width: 100%;
     min-height: 675px;
 }
-.navbar{
-    background: #fff;
-    padding: 1%;
-    margin-top: 2px;
-    width: 60%;
-    border-color: #e7e7e7;
-    margin: auto;
-    box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.10);
-    z-index: 1000;
-    border-width: 0 0 1px;
-    position: relative;
-    min-height: 50px;
-    border: 1px solid transparent;
-    display: flex;
-    justify-content: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 @media screen and  (max-width:1199px){
     .navbar-header{
         margin-left: 0;
@@ -51,20 +33,6 @@ div{
     .navbar-header {
         float: left;
     }
-}
-.navbar-brand {
-    color: #777;
-}
-
-.navbar-brand {
-    float: left;
-    font-size: 18px;
-    line-height: 20px;
-    text-decoration: none;
-}
-.navbar-brand h1{
-    margin: 0;
-    padding: 0;
 }
 .main-sec {
     padding: 0px 0 0px;
@@ -116,12 +84,12 @@ div{
     text-transform: uppercase;
 }
 .footer{
-    width: 60%;
+    width: 100%;
     margin: auto;
     border-top: 1px solid #e7e7e7;
     box-shadow: 0 -8px 10px 0 rgba(0, 0, 0, 0.2), 0 -19px 27px 0 rgba(0, 0, 0, 0);
     margin-top: 50px;
-    padding-bottom: 20px;
+  
 }
 .footer-menu{
     width: 100%;
@@ -131,6 +99,17 @@ div{
 .btn:hover{
     background-color: black;
     color: white;
+}
+
+.title-section{
+    border-bottom: 1px solid #efefef;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+.title-section a{
+    text-decoration: none;
+    color: black;
 }
 /*media querie*/
 @media screen and (max-width:920px)

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    localStorage.clear();
+    
     getUserById();
 });
 
@@ -92,7 +92,13 @@ function addUserData(){
     };
     postApi('http://api.techqueto.in/api/create-survey-user', data).then(x => {
         if(x.status){
-            location.reload();
+
+            document.getElementById('surveyUserName').innerHTML = surveyUserName ;
+            document.getElementById('surveyUserScore').innerHTML = userScroce ;
+            document.getElementById('surveyTotalScore').innerHTML =  totalScroce;
+
+            document.getElementById('survey-question-section').style = "display:none";
+            document.getElementById('user-score').style = "display:block";
         }
     });
 }

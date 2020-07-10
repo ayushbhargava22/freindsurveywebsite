@@ -15,11 +15,11 @@ let questionData = [];
 
 function getQuizList() {
     const data = {
-        "category_id":localStorage.getItem('category')
+        "category_id": localStorage.getItem('category')
     };
-    postApi('http://api.techqueto.in/api/get-quiz-list',data).then(x => {
+    postApi('http://api.techqueto.in/api/get-quiz-list', data).then(x => {
         const quizList = x.data;
-        let html = ' <option value="" disabled selected >Choose a category</option>';
+        let html = ' <option value="" disabled selected >Select Quiz</option>';
         quizList.map((data, i) => {
             html += `<option value="${data['quiz_unique_id']}">${data['quiz_name']}</option>`;
         });
@@ -57,10 +57,10 @@ function getCategoryByQuiz() {
 // Question By Category
 function getCategoryQuestion() {
     questionData = [];
-    let category = document.getElementById("categories");
-    let categoryValue = category.options[category.selectedIndex].value;
+    let question = document.getElementById("quiz-type");
+    let questionValue = question.options[question.selectedIndex].value;
     const data = {
-        "category_id": categoryValue
+        "quiz_id": questionValue
     };
     if (data['category_id']) {
         postApi('http://api.techqueto.in/api/get-question-category', data).then(x => {
@@ -76,6 +76,29 @@ function getCategoryQuestion() {
     }
 }
 
+
+// Question BY QUiz
+function getQuizQuestion() {
+    console.log("question is called");
+    questionData = [];
+    let quiz = document.getElementById("quiz-type");
+    let quizValue = quiz.options[quiz.selectedIndex].value;
+    const data = {
+        "quiz_id": quizValue
+    };
+    if (data['quiz_id']) {
+        postApi('http://api.techqueto.in/api/get-question-quiz', data).then(x => {
+            if (x.status) {
+                if (x.data) {
+                    x.data.map(x => {
+                        questionData.push(x);
+                    });
+                    createQuestionDropDown();
+                };
+            }
+        });
+    }
+}
 
 
 // // Get Category List
@@ -93,13 +116,17 @@ function getCategoryQuestion() {
 //User creating the survey
 function createUser() {
     let username = document.getElementById("username").value;
+    let useremail = document.getElementById("useremail").value;
+    let userphone = document.getElementById("userphnno").value;
     let userQuestionCount = document.getElementById("questionCount").value;
     if (username && userQuestionCount) {
         if (username.match(/^[a-zA-Z]+$/)) {
             if (userQuestionCount < 11 && userQuestionCount > 1) {
-                document.getElementById('loader').style = "display:flex";
+                //  document.getElementById('loader').style = "display:flex";
                 const data = {
-                    "name": username
+                    "name": username,
+                    "email": useremail ? useremail : null,
+                    "mobile":userphone ?  userphone :null
                 };
                 localStorage.setItem('userQuestionCount', userQuestionCount);
 
@@ -107,7 +134,7 @@ function createUser() {
                     let user_id = localStorage.getItem('user_id');
                     let base64code = localStorage.getItem('base64code');
                     document.getElementById("questionCount").value = '';
-                    document.getElementById('loader').style = "display:none";
+                    // document.getElementById('loader').style = "display:none";
                     if (user_id && base64code) {
                         localStorage.setItem('user_id', x['user_id']);
                         localStorage.setItem('base64code', x['token']);
@@ -142,9 +169,9 @@ function createOption(questionNumber, optionNumber, value = "Enter the option va
     html += ` <div class="option-enclosure" id="option-enclosure-${questionNumber}-${optionNumber}">`;
     html += `<input type="radio" class="option-input radio" id="radio-question-${questionNumber}-option-${optionNumber}" name="answer-1" value="question-${questionNumber}-option-${optionNumber}">`;
     html += `<div class="option">`;
-    html += `<textarea maxlength="56" spellcheck="false" id="question-${questionNumber}-option-${optionNumber}" type="text" class="form-control text-option-shadow" rows="2" name="text-option-3" placeholder="Pleace enter the option" required>${value}</textarea>`;
+    html += `<textarea maxlength="56" spellcheck="false" id="question-${questionNumber}-option-${optionNumber}" type="text" class="form-control text-option-shadow" rows="2" " placeholder="Pleace enter the option"  onclick="select()" required>${value}</textarea>`;
     html += ` </div>`;
-    html += `<a type="button" class="close button-close option-remove" id="remove-option-${questionNumber}-${optionNumber}" onclick="removeOption('option-enclosure-${questionNumber}-${optionNumber}')">`;
+    html += `<a type="button" class="close button-close option-remove" id="remove-option-${questionNumber}-${optionNumber}" onclick="removeOption('option-enclosure-${questionNumber}-${optionNumber}',${optionNumber})">`;
     html += `<span class="option-remove-icon">x</span></button></div>`;
     var element = document.getElementById('options-div');
     element.insertAdjacentHTML('beforeend', html);
@@ -155,7 +182,7 @@ function createQuestion() {
     document.getElementById('question-section').innerHTML = '';
     document.getElementById('options-div').innerHTML = '';
     let html = '';
-    html += ` <textarea maxlength="100" spellcheck="false" id="question-${questionCount}" type="text" class="form-control text-option-shadow" rows="3" name="question" placeholder="Enter your Question">If he meets with a genie, what would be his/her wish?</textarea>`;
+    html += ` <textarea maxlength="100" spellcheck="false" id="question-${questionCount}" type="text" class="form-control text-option-shadow" rows="3" name="question" placeholder="Enter your Question"  onclick="select()">If he meets with a genie, what would be his/her wish?</textarea>`;
     document.getElementById('text-question-title').innerHTML = `Question ${questionCount}`;
     document.getElementById('question-section').innerHTML = html;
     for (i = 1; i <= optionCount; i++) {
@@ -200,14 +227,26 @@ function addOption() {
 
 
 // remove option from the question
-function removeOption(id) {
+function removeOption(id,indexCount) {
     let optionDiv = document.getElementById(`${id}`);
     optionDiv.remove();
+    for(i= indexCount+1;i <= optionCount ; i++){
+        document.getElementById(`radio-question-${questionCount}-option-${i}`).value = `question-${questionCount}-option-${i-1}`
+        document.getElementById(`radio-question-${questionCount}-option-${i}`).id = `radio-question-${questionCount}-option-${i-1}`
+        document.getElementById(`question-${questionCount}-option-${i}`).id = `question-${questionCount}-option-${i-1}`
+        document.getElementById(`option-enclosure-${questionCount}-${i}`).id = `option-enclosure-${questionCount}-${i-1}`
+        document.getElementById(`remove-option-${questionCount}-${i}`).setAttribute("onclick",`removeOption('option-enclosure-${questionCount}-${i-1}',${i-1})`)
+        document.getElementById(`remove-option-${questionCount}-${i}`).id = `remove-option-${questionCount}-${i-1}`
+    }
     optionCount -= 1;
+   
+
 }
 
 // move to nextquestion
 function nextQuestion() {
+    select_box = document.getElementById("select-question");
+    select_box.selectedIndex = 0;
     questionValidation();
 
 }
@@ -228,9 +267,13 @@ function questionValidation() {
     }
 
     for (i = 1; i <= optionCount; i++) {
-        optionValue = document.getElementById(`question-${questionCount}-option-${i}`).value;
-        if (optionValue) {} else {
-            optionstatus = false;
+        if (document.getElementById(`question-${questionCount}-option-${i}`)) {
+
+
+            optionValue = document.getElementById(`question-${questionCount}-option-${i}`).value;
+            if (!optionValue) {
+                optionstatus = false;
+            }
         }
     }
 
@@ -304,7 +347,7 @@ function addUserQuestion(correctAnswer) {
         createQuestion(questionCount);
         if (userQuestionCountValue === questionCount) {
             document.getElementById('nextbutton').style = "display:none";
-            document.getElementById('donebutton').style = "display:block";
+            document.getElementById('donebutton').style = "display:flex";
         }
     }
 }
@@ -324,8 +367,9 @@ function submitValue(correctAnswer) {
 function setSelectedQuestion(questionindex) {
 
     const Value = questionData[questionindex];
-    optionCount = questionData.length;
+
     let optionList = JSON.parse(Value['options']);
+    optionCount = optionList.length;
     document.getElementById('question-section').innerHTML = '';
     document.getElementById('options-div').innerHTML = '';
     let html = '';
@@ -337,81 +381,18 @@ function setSelectedQuestion(questionindex) {
     }
 }
 
-// copy link function
-function copyLink() {
-    var copytext = document.getElementById('link-path')
-    copytext.select();
-    copytext.setSelectionRange(0, 99999); /*for mobile device*/
-    document.execCommand("copy");
-    alert("Copied the text: " + copytext.value);
-}
-
-
-// whatapp sharing
-function decorateWhatsAppLink() {
-    let userId = localStorage.getItem('user_id');
-    let url = window.location.hostname;
-    let path = url + '/quiz.html?quiz_id=' + userId;
-    var urll = 'whatsapp://send?text=';
-    var text = path;
-    var encodedText = encodeURIComponent(text);
-
-    var $whatsApp = $('.share-btn-div a');
-
-    $whatsApp.attr('href', urll + encodedText);
-}
-
-
-// twitter sharing
-function decoratetwitterLink() {
-    let userId = localStorage.getItem('user_id');
-    let url = window.location.hostname;
-    let path = url + '/quiz.html?quiz_id=' + userId;
-    var twitterShare = document.getElementById('twitter-btnn')
-
-
-    twitterShare.onclick = function (e) {
-        e.preventDefault();
-        var twitterWindow = window.open('https://twitter.com/share?url=' + path, 'twitter-popup', 'height=350,width=600');
-        if (twitterWindow.focus) {
-            twitterWindow.focus();
-        }
-        return false;
-    }
-
-}
-
-// facebook sharing
-function decoratefacebookLink() {
-    let userId = localStorage.getItem('user_id');
-    let url = window.location.hostname;
-    let path = url + '/quiz.html?quiz_id=' + userId;
-    var facebookShare = document.getElementById('facebook-btnn');
-
-
-    facebookShare.onclick = function (e) {
-        e.preventDefault();
-        var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + path, 'facebook-popup', 'height=350,width=600');
-        if (facebookWindow.focus) {
-            facebookWindow.focus();
-        }
-        return false;
-    }
-}
-document.getElementById('button-menu-mobile').addEventListener('click', function() {
+// mobile menu
+document.getElementById('button-menu-mobile').addEventListener('click', function () {
     var box1 = document.getElementById('mobile-menu')
-    if(box1.style.display == 'none')
-    {
+    if (box1.style.display == 'none') {
         box1.style.display = 'block'
-    }
-    else{
+    } else {
         box1.style.display = 'none'
     }
 })
-document.getElementById('mobile-menu-close').addEventListener('click', function() {
-    var box2= document.getElementById('mobile-menu')
-    if(box2.style.display == 'block')
-    {
+document.getElementById('mobile-menu-close').addEventListener('click', function () {
+    var box2 = document.getElementById('mobile-menu')
+    if (box2.style.display == 'block') {
         box2.style.display = 'none'
     }
 })
